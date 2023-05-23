@@ -2,18 +2,15 @@
   <div class="home">
     <v-container class="mb-6">
       <v-row align="start" no-gutters style="height: 150px">
-        <v-col v-for="n in 4" :key="n">
-          <v-card class="pa-2 mx-2" max-width="344" variant="outlined">
+        <v-col v-for="todo in todos" :key="todo.id">
+          <v-card class="pa-2 ma-2" max-width="300" variant="outlined">
             <v-card-item>
-              <div>
-                <div class="text-overline mb-1">OVERLINE</div>
-                <div class="text-h6 mb-1">Headline</div>
-                <div class="text-caption">Greyhound divisely hello coldly fonwderfully</div>
-              </div>
+              <div class="text-h6">{{ todo.content }}</div>
             </v-card-item>
 
             <v-card-actions>
-              <v-btn variant="outlined"> Button </v-btn>
+              <v-btn variant="elevated" color="blue" icon="mdi-check"> </v-btn>
+              <v-btn variant="elevated" color="red" icon="mdi-close"> </v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -22,4 +19,19 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+const todos = ref([
+  {
+    id: '1',
+    content: 'clearance room',
+    isDone: false
+  },
+
+  {
+    id: '2',
+    content: 'washing the dishes',
+    isDone: true
+  }
+])
+</script>
