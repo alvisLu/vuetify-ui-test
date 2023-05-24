@@ -10,9 +10,11 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "firebase": "^9.22.0",
     "pinia": "^2.0.36",
     "vue": "^3.3.2",
     "vue-router": "^4.2.0",
+    "vuefire": "^3.1.0",
     "vuetify": "^3.3.0"
   },
   "devDependencies": {
