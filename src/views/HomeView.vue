@@ -66,9 +66,13 @@ const getTodos = async (db) => {
 const todos = ref([])
 const content = ref('')
 
-onMounted(async () => {
+const reflash = async () => {
   const data = await getTodos(db)
   todos.value = data
+}
+
+onMounted(async () => {
+  reflash()
 })
 
 const add = async () => {
@@ -79,11 +83,7 @@ const add = async () => {
     }
     await addDoc(collection(db, 'todos'), newTodo)
   }
-}
-
-const reflash = async () => {
-  const data = await getTodos(db)
-  todos.value = data
+  // 待實做: 新增完後更新 list
 }
 
 const unDone = async () => {
