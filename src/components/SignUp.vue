@@ -7,8 +7,31 @@
 </template>
 
 <script setup>
-const singUp = () => {
-  console.log('singUp!');
+import { auth } from '@/firebase';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+const singUp = async () => {
+  const newUser = {
+    name: 'test_1',
+    email: 'test_1@gmail.com',
+    password: '123456'
+  };
+
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      newUser.email,
+      newUser.password
+    );
+
+    const user = userCredential.user;
+    console.log(user);
+
+    await updateProfile({
+      displayName: newUser.name
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 </script>
 
