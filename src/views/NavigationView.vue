@@ -5,6 +5,9 @@
         <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>My files</v-toolbar-title>
         <v-spacer></v-spacer>
+        <Login />
+        <Logout />
+        <SignUp />
         <v-btn variant="text" icon="mdi-dots-vertical" @click="dots"></v-btn>
       </v-app-bar>
 
@@ -38,6 +41,9 @@
 <script setup>
 import { ref } from 'vue'
 import { RouterView } from 'vue-router'
+import Login from '../components/Login.vue'
+import Logout from '../components/Logout.vue'
+import SignUp from '../components/SignUp.vue'
 
 const drawer = ref(false)
 const items = ref([
