@@ -7,12 +7,25 @@
 </template>
 
 <script setup>
-// firebase auth
+import { auth } from '@/firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const login = () => {
-  console.log('login!')
+  const user = {
+    email: 'test@gmail.com',
+    password: '123456'
+  };
+
+  signInWithEmailAndPassword(auth, user.email, user.password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log(user);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   // TODO: redirect to home pag
-}
+};
 </script>
 
 <style></style>
