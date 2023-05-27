@@ -10,9 +10,9 @@
 // firebase auth
 
 const logout = () => {
-  console.log('logout!')
+  console.log('logout!');
   // TODO: redirect to login pag
-}
+};
 </script>
 
 <style></style>

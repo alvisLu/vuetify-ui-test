@@ -8,8 +8,8 @@
 
 <script setup>
 const singUp = () => {
-  console.log('singUp!')
-}
+  console.log('singUp!');
+};
 </script>
 
 <style></style>

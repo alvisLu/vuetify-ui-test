@@ -17,12 +17,12 @@
 
 <script setup>
 const sayHi = () => {
-  console.log('Hi!')
-}
+  console.log('Hi!');
+};
 
 const cancel = () => {
-  console.log('cancel!')
-}
+  console.log('cancel!');
+};
 </script>
 
 <style></style>

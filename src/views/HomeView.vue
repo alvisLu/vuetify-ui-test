@@ -53,51 +53,51 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { db } from '@/firebase'
-import { collection, getDocs, addDoc } from 'firebase/firestore/lite'
+import { ref, onMounted } from 'vue';
+import { db } from '@/firebase';
+import { collection, getDocs, addDoc } from 'firebase/firestore/lite';
 
 const getTodos = async (db) => {
-  const todosCol = collection(db, 'todos')
-  const citySnapshot = await getDocs(todosCol)
-  return citySnapshot.docs.map((doc) => doc.data())
-}
+  const todosCol = collection(db, 'todos');
+  const citySnapshot = await getDocs(todosCol);
+  return citySnapshot.docs.map((doc) => doc.data());
+};
 
-const todos = ref([])
-const content = ref('')
+const todos = ref([]);
+const content = ref('');
 
 const reflash = async () => {
-  const data = await getTodos(db)
-  todos.value = data
-}
+  const data = await getTodos(db);
+  todos.value = data;
+};
 
 onMounted(async () => {
-  reflash()
-})
+  reflash();
+});
 
 const add = async () => {
   if (content.value.length > 0) {
     const newTodo = {
       content: content.value,
       isDone: false
-    }
-    await addDoc(collection(db, 'todos'), newTodo)
+    };
+    await addDoc(collection(db, 'todos'), newTodo);
   }
   // 待實做: 新增完後更新 list
-}
+};
 
 const unDone = async () => {
   // 待實做: isDone: true -> false
-  console.log('unDone')
-}
+  console.log('unDone');
+};
 
 const done = async () => {
   // 待實做: isDone: false -> true
-  console.log('done')
-}
+  console.log('done');
+};
 
 const remove = async () => {
   // 待實做: 刪除 todo
-  console.log('remove')
-}
+  console.log('remove');
+};
 </script>

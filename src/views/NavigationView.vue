@@ -39,13 +39,13 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { RouterView } from 'vue-router'
-import Login from '../components/Login.vue'
-import Logout from '../components/Logout.vue'
-import SignUp from '../components/SignUp.vue'
+import { ref } from 'vue';
+import { RouterView } from 'vue-router';
+import Login from '../components/Login.vue';
+import Logout from '../components/Logout.vue';
+import SignUp from '../components/SignUp.vue';
 
-const drawer = ref(false)
+const drawer = ref(false);
 const items = ref([
   {
     name: 'Home',
@@ -57,9 +57,9 @@ const items = ref([
     path: '/about',
     icon: 'mdi-account-multiple'
   }
-])
+]);
 
 const dots = () => {
-  console.log('我是 ...')
-}
+  console.log('我是 ...');
+};
 </script>
