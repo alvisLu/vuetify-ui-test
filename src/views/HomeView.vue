@@ -57,31 +57,58 @@ import { ref, onMounted } from 'vue';
 import { db } from '@/firebase';
 import { collection, getDocs, addDoc } from 'firebase/firestore/lite';
 
-const getTodos = async (db) => {
-  const todosCol = collection(db, 'todos');
-  const citySnapshot = await getDocs(todosCol);
-  return citySnapshot.docs.map((doc) => doc.data());
-};
-
 const todos = ref([]);
 const content = ref('');
+const todoDB = collection(db, 'todos');
+
+/*
+ * 到 firestore 取得所有的 todos 資料
+ *
+ * return [
+ *  {
+ *    content: 'do the right thing',
+ *    isDone: true
+ *  },
+ *  {
+ *    content: 'do thing right',
+ *    isDone: true
+ *  },
+ *  ...
+ * ]
+ */
+const getTodos = async () => {
+  const snapshot = await getDocs(todoDB); // 取得 todos 的所有資料
+
+  return snapshot.docs.map((doc) => {
+    //console.log(doc);
+    return doc.data();
+  });
+};
 
 const reflash = async () => {
-  const data = await getTodos(db);
-  todos.value = data;
+  try {
+    const data = getTodos(); // getTodos() 會回傳 Promise<Data>
+    console.log(data);
+    todos.value = data;
+  } catch (error) {
+    throw new Error('reflash fail');
+  }
 };
 
 onMounted(async () => {
   reflash();
 });
 
+/*
+ * 新增資料到 todo DB
+ */
 const add = async () => {
   if (content.value.length > 0) {
     const newTodo = {
       content: content.value,
       isDone: false
     };
-    await addDoc(collection(db, 'todos'), newTodo);
+    await addDoc(todoDB, newTodo);
   }
   // 待實做: 新增完後更新 list
 };
