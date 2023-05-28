@@ -10,21 +10,21 @@
 import { auth } from '@/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
-const login = () => {
-  const user = {
+const login = async () => {
+  const login = {
     email: 'test@gmail.com',
     password: '123456'
   };
 
-  signInWithEmailAndPassword(auth, user.email, user.password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      console.log(user);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  // TODO: redirect to home pag
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, login.email, login.password);
+    const user = userCredential.user;
+    console.log(user);
+  } catch (e) {
+    throw new Error(e);
+  }
+
+  // TODO: 登入完後轉跳到 home page
 };
 </script>
 
