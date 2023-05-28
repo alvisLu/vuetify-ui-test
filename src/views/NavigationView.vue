@@ -5,6 +5,7 @@
         <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>My files</v-toolbar-title>
         <v-spacer></v-spacer>
+        <!-- TODO: 未登入時顯示 login, 登入後顯示 logout -->
         <Login />
         <Logout />
         <SignUp />
