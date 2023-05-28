@@ -7,11 +7,16 @@
 </template>
 
 <script setup>
-// firebase auth
+import { auth } from '@/firebase';
+import { signOut } from 'firebase/auth';
+const logout = async () => {
+  try {
+    await signOut(auth);
+  } catch (e) {
+    throw new Error(e);
+  }
 
-const logout = () => {
-  console.log('logout!');
-  // TODO: redirect to login pag
+  // TODO: 登出後轉跳到 login page
 };
 </script>
 
