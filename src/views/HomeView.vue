@@ -55,7 +55,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { db } from '@/firebase';
-import { collection, getDocs, addDoc, doc, deleteDoc } from 'firebase/firestore/lite';
+import { collection, getDocs, addDoc, doc, deleteDoc, updateDoc } from 'firebase/firestore/lite';
 
 const getTodos = async (db) => {
   const todosCol = collection(db, 'todos');
@@ -95,6 +95,10 @@ const unDone = async () => {
 
 const done = async () => {
   // 待實做: isDone: false -> true
+  const renew = doc(db, 'cities', 'DC');
+  await updateDoc(renew, {
+    isDone: true
+  });
   console.log('done');
 };
 
