@@ -31,9 +31,15 @@
                       size="small"
                       color="orange-darken-2"
                       icon="mdi-close"
-                      @click="unDone"
+                      @click="unDone(todo)"
                     />
-                    <v-btn class="ma-1" size="small" color="green" icon="mdi-check" @click="done" />
+                    <v-btn
+                      class="ma-1"
+                      size="small"
+                      color="green"
+                      icon="mdi-check"
+                      @click="done(todo)"
+                    />
                     <v-btn
                       class="ma-1"
                       size="small"
@@ -80,14 +86,14 @@ const getTodos = async () => {
   const snapshot = await getDocs(todoDB); // 取得 todos 的所有資料
 
   return snapshot.docs.map((doc) => {
-    //console.log(doc);
-    return doc.data();
+    return { id: doc.id, ...doc.data() };
   });
 };
 
 const reflash = async () => {
   try {
-    const data = getTodos(); // getTodos() 會回傳 Promise<Data>
+    const data = await getTodos(); // getTodos() 會回傳 Promise<Data>
+
     console.log(data);
     todos.value = data;
   } catch (error) {
@@ -115,22 +121,27 @@ const add = async () => {
   todos.value = data;
 };
 
-const unDone = async () => {
+const unDone = async (todo) => {
   // 待實做: isDone: true -> false
-  await deleteDoc(doc(db, 'cities', 'DC'));
+  const renew = doc(db, 'todos', todo.id);
+  await updateDoc(renew, {
+    isDone: false
+  });
+  reflash();
 };
 
-const done = async () => {
+const done = async (todo) => {
   // 待實做: isDone: false -> true
-  const renew = doc(db, 'cities', 'DC');
+  const renew = doc(db, 'todos', todo.id);
   await updateDoc(renew, {
     isDone: true
   });
-  console.log('done');
+  reflash();
 };
 
 const remove = async () => {
   // 待實做: 刪除 todo
+  await deleteDoc(doc(db, 'cities', 'DC'));
   console.log('remove');
 };
 </script>
