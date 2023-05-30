@@ -7,13 +7,22 @@
         class="font-weight-bold"
         variant="outlined"
         clearable
-        :rules="usernameRules"
-        :counter="usernameLength"
+      ></v-text-field>
+    </v-card-text>
+    <v-card-text v-model="myAccountId">
+      <v-text-field
+        label="輸入您的密碼"
+        type="text"
+        class="font-weight-bold"
+        variant="outlined"
+        clearable
+        :rules="pswdNumberRules"
+        :counter="pswdNumberLength"
       ></v-text-field>
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="black" class="mr-2" variant="outlined">繼續</v-btn>
+      <v-btn color="black" class="mr-2" variant="outlined">登入</v-btn>
     </v-card-actions>
   </v-form>
 </template>
@@ -23,10 +32,10 @@ export default {
   props: ['accountId'],
   data() {
     return {
-      usernameLength: 15,
-      usernameRules: [
-        (v) => !!v || '請輸入帳號',
-        (v) => (v && v.length <= this.usernameLength) || '最多15個字'
+      pswdNumberLength: 20,
+      pswdNumberRules: [
+        (v) => !!v || '請輸入密碼',
+        (v) => (v && v.length <= this.pswdNumberLength) || '最多20個字'
       ]
     };
   },
