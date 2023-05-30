@@ -9,7 +9,7 @@
         clearable
       ></v-text-field>
     </v-card-text>
-    <v-card-text v-model="myAccountId">
+    <v-card-text>
       <v-text-field
         label="輸入您的密碼"
         type="text"
