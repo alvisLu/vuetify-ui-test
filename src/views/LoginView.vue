@@ -36,13 +36,13 @@
               class="font-weight-bold"
               variant="outlined"
               clearable
-              :rule="rules.pswdRules"
+              :rules="rules.pswdRules"
               :counter="rules.pswdLength"
             ></v-text-field>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn @click="isLogin ? login() : register()" class="mr-2">{{
+            <v-btn @click="isLogin = !isLogin" class="mr-2">{{
               isLogin ? '還沒有帳號嗎？立即註冊' : '已經有帳號？立即登入'
             }}</v-btn>
             <v-spacer></v-spacer>
