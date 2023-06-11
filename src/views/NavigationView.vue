@@ -6,9 +6,9 @@
         <v-toolbar-title>My files</v-toolbar-title>
         <v-spacer></v-spacer>
         <!-- TODO: 未登入時顯示 login, 登入後顯示 logout -->
-        <Login />
+        <Login v-if="!isLogin" />
         <Logout />
-        <SignUp />
+        <SignUp v-if="!isLogin" />
         <v-btn variant="text" icon="mdi-dots-vertical" @click="dots"></v-btn>
       </v-app-bar>
 
@@ -46,6 +46,7 @@ import Login from '../components/Login.vue';
 import Logout from '../components/Logout.vue';
 import SignUp from '../components/SignUp.vue';
 
+const isLogin = ref(true);
 const drawer = ref(false);
 const items = ref([
   {
